@@ -104,9 +104,12 @@ open class FPNTextField: UITextField {
 		setupPhoneCodeTextField()
 		setupLeftView()
 
-        if #available(iOS 10.0, *) {
-            textContentType = .telephoneNumber
-            phoneCodeTextField.textContentType = .telephoneNumber
+        if #available(iOS 12.0, *) {
+            textContentType = .oneTimeCode
+            phoneCodeTextField.textContentType = .oneTimeCode
+        } else if #available(iOS 10.0, *) {
+            textContentType = .init(rawValue: "")
+            phoneCodeTextField.textContentType = .init(rawValue: "")
         }
         keyboardType = .numberPad
         phoneCodeTextField.keyboardType = .numberPad
